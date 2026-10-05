@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Verhalen van patiënten, artsen en behandelaars over diafragma-flutter. Deel uw eigen ervaring.">
+    <title>Verhalen | Diafragma-Flutter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫁</text></svg>">
+</head>
+<body>
+        <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Diafragma-Flutter</a>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" class="lang-btn active" data-lang="nl">NL</button>
+                <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><span class="lang-nl">Home</span><span class="lang-en">Home</span></a></li>
+                    <li><a href="info.html"><span class="lang-nl">Over de aandoening</span><span class="lang-en">About the condition</span></a></li>
+                    <li><a href="publicaties.html"><span class="lang-nl">Publicaties</span><span class="lang-en">Publications</span></a></li>
+                    <li><a href="videos.html"><span class="lang-nl">Filmpjes</span><span class="lang-en">Videos</span></a></li>
+                    <li><a href="verhalen.html" class="active"><span class="lang-nl">Verhalen</span><span class="lang-en">Stories</span></a></li>
+                    <li><a href="gasten.html"><span class="lang-nl">Gasten</span><span class="lang-en">Guests</span></a></li>
+                    <li><a href="links.html"><span class="lang-nl">Links</span><span class="lang-en">Links</span></a></li>
+                    <li><a href="contact.html" class="nav-contact"><span class="lang-nl">✉ Contact</span><span class="lang-en">✉ Contact</span></a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1><span class="lang-nl">Verhalen &amp; Ervaringen</span><span class="lang-en">Stories &amp; Experiences</span></h1>
+            <p><span class="lang-nl">Patiënten, artsen en behandelaars delen hun verhaal</span><span class="lang-en">Patients, doctors and caregivers share their story</span></p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="intro-text lang-nl">
+                Op deze pagina verzamelen we echte ervaringen met diafragma-flutter. Uw verhaal kan anderen herkenning, hoop of praktische tips geven.
+                Onderaan deze pagina kunt u zelf uw verhaal insturen.
+            </p>
+            <p class="intro-text lang-en">
+                On this page we collect real experiences with diaphragmatic flutter. Your story can offer others recognition, hope or practical tips.
+                You can submit your own story at the bottom of this page.
+            </p>
+
+            <div class="how-it-works">
+                <h2><span class="lang-nl">Zo werkt het</span><span class="lang-en">How it works</span></h2>
+                <ol class="steps">
+                    <li>
+                        <span class="step-nr">1</span>
+                        <div>
+                            <h3><span class="lang-nl">Lees de verhalen</span><span class="lang-en">Read the stories</span></h3>
+                            <p class="lang-nl">Scroll naar beneden. Ingestuurde en goedgekeurde verhalen van bezoekers staan bovenaan, daaronder enkele voorbeeldverhalen.</p>
+                            <p class="lang-en">Scroll down. Submitted and approved stories from visitors are shown first, followed by a few example stories.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-nr">2</span>
+                        <div>
+                            <h3><span class="lang-nl">Vul het formulier in</span><span class="lang-en">Fill in the form</span></h3>
+                            <p class="lang-nl">Klik op <a href="#deel-uw-verhaal">Deel uw verhaal</a>. Vul uw naam of initialen in (“Anoniem” mag ook), kies wie u bent en schrijf uw ervaring op. Uw e-mailadres is optioneel.</p>
+                            <p class="lang-en">Click <a href="#deel-uw-verhaal">Share your story</a>. Enter your name or initials (“Anonymous” is fine), choose who you are and write down your experience. Your email address is optional.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-nr">3</span>
+                        <div>
+                            <h3><span class="lang-nl">Klik op “Verstuur verhaal”</span><span class="lang-en">Click “Send story”</span></h3>
+                            <p class="lang-nl">U ziet direct een bevestiging onder de knop. Uw verhaal is nu veilig ontvangen, maar nog niet openbaar.</p>
+                            <p class="lang-en">You will immediately see a confirmation below the button. Your story has been safely received, but is not public yet.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-nr">4</span>
+                        <div>
+                            <h3><span class="lang-nl">Beoordeling en plaatsing</span><span class="lang-en">Review and publication</span></h3>
+                            <p class="lang-nl">De beheerder leest elk verhaal en zet het na goedkeuring op deze pagina. Alleen uw naam, rol en verhaal worden getoond – uw e-mailadres nooit.</p>
+                            <p class="lang-en">The administrator reads every story and publishes it on this page after approval. Only your name, role and story are shown – never your email address.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <h2 class="stories-heading"><span class="lang-nl">Verhalen van bezoekers</span><span class="lang-en">Stories from visitors</span></h2>
+            <div id="approved-stories" aria-live="polite">
+                <p class="stories-empty" id="stories-empty">
+                    <span class="lang-nl">Verhalen worden geladen…</span><span class="lang-en">Loading stories…</span>
+                </p>
+            </div>
+
+            <h2 class="stories-heading"><span class="lang-nl">Voorbeeldverhalen</span><span class="lang-en">Example stories</span></h2>
+            <!-- Voorbeeldverhaal 1 -->
+            <article class="story story-example">
+                <div class="story-header">
+                    <div class="story-avatar">👤</div>
+                    <div class="story-meta">
+                        <h3>Anoniem – patiënt</h3>
+                        <span>Gedeeld als voorbeeld • Nederland</span>
+                    </div>
+                </div>
+                <p>
+                    “Jarenlang dachten artsen dat ik last had van stress of reflux. De bewegingen in mijn bovenbuik 
+                    waren duidelijk zichtbaar, maar niemand kon ze verklaren. Pas na een fluoroscopie werd de diagnose 
+                    diafragma-flutter gesteld. Het gaf me eindelijk duidelijkheid, al is de behandeling nog een zoektocht.”
+                </p>
+            </article>
+
+            <!-- Voorbeeldverhaal 2 -->
+            <article class="story story-example">
+                <div class="story-header">
+                    <div class="story-avatar">🩺</div>
+                    <div class="story-meta">
+                        <h3>Neuroloog (voorbeeld)</h3>
+                        <span>Gespecialiseerd in bewegingsstoornissen</span>
+                    </div>
+                </div>
+                <p>
+                    “Diafragma-flutter is zeldzaam en wordt vaak gemist. Bij onverklaarde buikbewegingen of dyspnoe 
+                    zonder duidelijke long- of hartafwijking is het de moeite waard om aan deze diagnose te denken. 
+                    Fluoroscopie of EMG van het middenrif kan de diagnose bevestigen. Behandeling is individueel: 
+                    soms medicatie, soms non-invasieve ventilatie of biofeedback.”
+                </p>
+            </article>
+
+            <!-- Voorbeeldverhaal 3 -->
+            <article class="story story-example">
+                <div class="story-header">
+                    <div class="story-avatar">💚</div>
+                    <div class="story-meta">
+                        <h3>Fysiotherapeut / ademhalingstherapeut (voorbeeld)</h3>
+                        <span>Behandelaar</span>
+                    </div>
+                </div>
+                <p>
+                    “Bij sommige patiënten met diafragma-flutter zie ik baat bij abdomino-thoracale biofeedback 
+                    en ademhalingstechnieken die het middenrif rust geven. Het is geen wondermiddel, maar het kan 
+                    de frequentie of intensiteit van aanvallen verminderen. Samenwerking met de neuroloog of longarts is essentieel.”
+                </p>
+            </article>
+
+
+            <!-- Formulier om eigen verhaal te delen -->
+            <div class="story-form" id="deel-uw-verhaal">
+                <h2><span class="lang-nl">Deel uw eigen verhaal</span><span class="lang-en">Share your own story</span></h2>
+                <p class="lang-nl">
+                    Vul het formulier in. Uw verhaal wordt eerst door de beheerder beoordeeld en verschijnt na goedkeuring op deze pagina. Uw e-mailadres wordt nooit getoond.
+                </p>
+                <p class="lang-en">
+                    Fill in the form. Your story is first reviewed by the administrator and appears on this page after approval. Your email address is never shown.
+                </p>
+
+                <form id="story-form">
+                    <div class="form-group">
+                        <label for="name"><span class="lang-nl">Naam of initialen *</span><span class="lang-en">Name or initials *</span></label>
+                        <input type="text" id="name" name="name" required maxlength="100" placeholder="A.B. / Anoniem">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role"><span class="lang-nl">Ik ben *</span><span class="lang-en">I am *</span></label>
+                        <select id="role" name="role" required>
+                            <option value="">— Maak een keuze / Choose —</option>
+                            <option value="patiënt">Patiënt / Patient</option>
+                            <option value="arts">Arts, specialist / Doctor, specialist</option>
+                            <option value="behandelaar">Behandelaar (fysio, ademhalingstherapeut) / Therapist</option>
+                            <option value="naaste">Naaste, familie / Relative, family</option>
+                            <option value="anders">Anders / Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="story"><span class="lang-nl">Uw verhaal *</span><span class="lang-en">Your story *</span></label>
+                        <textarea id="story" name="story" required maxlength="5000" placeholder="Diagnose, behandeling, tips… / Diagnosis, treatment, tips…"></textarea>
+                    </div>
+
+                    <div class="form-group form-hp" aria-hidden="true">
+                        <label for="website">Website (laat leeg)</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><span class="lang-nl">E-mail (optioneel, alleen voor contact met de beheerder)</span><span class="lang-en">Email (optional, only for contact with the administrator)</span></label>
+                        <input type="email" id="email" name="email" maxlength="200" placeholder="uw@email.nl">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"><span class="lang-nl">Verstuur verhaal</span><span class="lang-en">Send story</span></button>
+                    <p class="form-status" id="story-form-status" role="status"></p>
+                    <p class="form-note">
+                        <span class="lang-nl">* Verplichte velden. Alleen uw naam, rol en verhaal worden na goedkeuring getoond.</span>
+                        <span class="lang-en">* Required fields. Only your name, role and story are shown after approval.</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>Diafragma-Flutter</h4>
+                    <p>Een website voor bewustwording over een zeldzame aandoening.</p>
+                </div>
+                <div>
+                    <h4>Pagina’s</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="info.html">Over de aandoening</a></li>
+                        <li><a href="publicaties.html">Publicaties</a></li>
+                        <li><a href="verhalen.html">Verhalen</a></li>
+                        <li><a href="gasten.html">Gasten</a></li>
+                        <li><a href="links.html">Links</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Disclaimer</h4>
+                    <p>Deze website is bedoeld voor informatieve doeleinden en vervangt geen medisch advies. Raadpleeg altijd een arts.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025–2026 Diafragma-Flutter. Gemaakt om bewustwording te creëren.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /beheer-verhalen.html
+
+Sitemap: https://jouwdomein.nl/sitemap.xml

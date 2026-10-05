@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Beheer verhalen | Diafragma-Flutter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫁</text></svg>">
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Diafragma-Flutter</a>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Beheer verhalen</h1>
+            <p>Ingestuurde verhalen beoordelen en plaatsen</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="story-form admin-login" id="login-box">
+                <h2>Inloggen</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="password">Beheerderswachtwoord</label>
+                        <input type="password" id="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Inloggen</button>
+                    <p class="form-status" id="login-status" role="status"></p>
+                </form>
+            </div>
+
+            <div id="admin-panel" hidden>
+                <div class="how-it-works">
+                    <h2>Bediening</h2>
+                    <ol class="steps">
+                        <li><span class="step-nr">1</span><div><h3>Te beoordelen</h3><p>Hier staan nieuwe verhalen die nog niet op de site staan.</p></div></li>
+                        <li><span class="step-nr">2</span><div><h3>Goedkeuren en plaatsen</h3><p>Het verhaal verschijnt direct op de pagina Verhalen (zonder e-mailadres).</p></div></li>
+                        <li><span class="step-nr">3</span><div><h3>Offline halen</h3><p>Onder <em>Geplaatst</em> haal je een verhaal weer van de site; het blijft bewaard.</p></div></li>
+                        <li><span class="step-nr">4</span><div><h3>Verwijderen</h3><p>Wist het verhaal definitief. Klik na afloop op <em>Uitloggen</em>.</p></div></li>
+                    </ol>
+                </div>
+                <div class="admin-toolbar">
+                    <button type="button" class="btn btn-primary" data-filter="pending">Te beoordelen</button>
+                    <button type="button" class="btn btn-outline" data-filter="approved">Geplaatst</button>
+                    <button type="button" class="btn btn-outline" data-filter="all">Alles</button>
+                    <button type="button" class="btn btn-outline" id="logout">Uitloggen</button>
+                </div>
+                <div id="admin-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    (function () {
+      const KEY = 'df-admin-pw';
+      const loginBox = document.getElementById('login-box');
+      const panel = document.getElementById('admin-panel');
+      const list = document.getElementById('admin-list');
+      const loginStatus = document.getElementById('login-status');
+      let stories = [];
+      let filter = 'pending';
+
+      function api(method, query, body) {
+        return fetch('/api/admin/stories' + (query || ''), {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': sessionStorage.getItem(KEY) || ''
+          },
+          body: body ? JSON.stringify(body) : undefined
+        });
+      }
+
+      function load() {
+        return api('GET').then(function (res) {
+          if (res.status === 401) throw new Error('Onjuist wachtwoord.');
+          if (res.status === 503) throw new Error('Er is nog geen beheerderswachtwoord ingesteld (omgevingsvariabele ADMIN_PASSWORD in Netlify).');
+          if (!res.ok) throw new Error('Kon verhalen niet laden.');
+          return res.json();
+        }).then(function (rows) {
+          stories = rows;
+          loginBox.hidden = true;
+          panel.hidden = false;
+          render();
+        });
+      }
+
+      function render() {
+        list.innerHTML = '';
+        const shown = stories.filter(function (s) {
+          return filter === 'all' || (filter === 'approved' ? s.approved : !s.approved);
+        });
+        if (!shown.length) {
+          const p = document.createElement('p');
+          p.textContent = 'Geen verhalen in deze lijst.';
+          list.appendChild(p);
+          return;
+        }
+        shown.forEach(function (s) {
+          const article = document.createElement('article');
+          article.className = 'story';
+
+          const h3 = document.createElement('h3');
+          h3.textContent = s.name + ' – ' + s.role;
+          const badge = document.createElement('span');
+          badge.className = 'badge ' + (s.approved ? 'badge-approved' : 'badge-pending');
+          badge.textContent = s.approved ? 'Geplaatst' : 'Te beoordelen';
+          h3.appendChild(badge);
+
+          const meta = document.createElement('p');
+          meta.className = 'form-note';
+          meta.textContent = 'Ingestuurd op ' + new Date(s.createdAt).toLocaleString('nl-NL') +
+            (s.email ? ' • E-mail: ' + s.email : '');
+
+          const text = document.createElement('p');
+          text.className = 'story-text';
+          text.textContent = s.story;
+
+          const actions = document.createElement('div');
+          actions.className = 'admin-story-actions';
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'btn ' + (s.approved ? 'btn-outline' : 'btn-primary');
+          toggle.textContent = s.approved ? 'Offline halen' : 'Goedkeuren en plaatsen';
+          toggle.addEventListener('click', function () {
+            toggle.disabled = true;
+            api('PATCH', '?id=' + s.id, { approved: !s.approved }).then(load);
+          });
+          const del = document.createElement('button');
+          del.type = 'button';
+          del.className = 'btn btn-danger';
+          del.textContent = 'Verwijderen';
+          del.addEventListener('click', function () {
+            if (!confirm('Dit verhaal definitief verwijderen?')) return;
+            del.disabled = true;
+            api('DELETE', '?id=' + s.id).then(load);
+          });
+          actions.appendChild(toggle);
+          actions.appendChild(del);
+
+          article.appendChild(h3);
+          article.appendChild(meta);
+          article.appendChild(text);
+          article.appendChild(actions);
+          list.appendChild(article);
+        });
+      }
+
+      document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        sessionStorage.setItem(KEY, document.getElementById('password').value);
+        loginStatus.textContent = '';
+        load().catch(function (err) {
+          sessionStorage.removeItem(KEY);
+          loginStatus.className = 'form-status error';
+          loginStatus.textContent = err.message;
+        });
+      });
+
+      document.querySelectorAll('[data-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filter = btn.getAttribute('data-filter');
+          document.querySelectorAll('[data-filter]').forEach(function (b) {
+            b.className = 'btn ' + (b === btn ? 'btn-primary' : 'btn-outline');
+          });
+          render();
+        });
+      });
+
+      document.getElementById('logout').addEventListener('click', function () {
+        sessionStorage.removeItem(KEY);
+        location.reload();
+      });
+
+      if (sessionStorage.getItem(KEY)) load().catch(function () { sessionStorage.removeItem(KEY); });
+    })();
+    </script>
+</body>
+</html>
