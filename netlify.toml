@@ -1,4 +1,5 @@
 [build]
+  command = "mkdir -p public && cp *.html style.css script.js robots.txt sitemap.xml public/"
   publish = "public"
 
 [functions]
