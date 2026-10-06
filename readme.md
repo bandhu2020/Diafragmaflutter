@@ -25,9 +25,16 @@ Gebaseerd op de **eerste schone opzet**, aangevuld met alle gevraagde functies.
 8. SEO (robots.txt, sitemap, meta, structured data)
 
 ## Structuur
-- `public/` – de website zelf (wordt gepubliceerd)
+- `*.html`, `style.css`, `script.js`, `robots.txt` en `sitemap.xml` – de websitebestanden in de hoofdmap
+- `public/` – gegenereerde publicatiemap (wordt gepubliceerd, niet ingecheckt)
 - `netlify/functions/` – API voor verhalen en beheer
 - `db/` en `netlify/database/migrations/` – Netlify Database (Postgres) voor ingestuurde verhalen
+
+## Netlify-deployment
+Dit project is een statische HTML/CSS/JavaScript-website, geen Flutter-project.
+De buildopdracht in `netlify.toml` maakt `public/` aan en kopieert de websitebestanden naar die map.
+Netlify publiceert vervolgens alleen `public/`, zodat beheerinstructies, databasebestanden en servercode niet als statische bestanden worden gepubliceerd.
+Er is geen Flutter-installatie nodig.
 
 ## Beheer
 Alle instructies om teksten, publicaties en gasten toe te voegen staan in **BEHEER.md**.
